@@ -3,7 +3,11 @@ const app = express();
 
 
 app.get('/', (req , res) =>{
-    res.send('Hello peter chege, js guru')
+    res.send('Hello peter chege, js guru');
+});
+
+app.get('/api/courses', (req, res)=>{
+    res.send([1,2,3,4,5,6,7,8,9]);
 });
 
 app.listen(3000, ()=> console.log('Listening to port 3000...'));
