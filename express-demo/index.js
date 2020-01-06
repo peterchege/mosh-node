@@ -10,6 +10,14 @@ app.get('/api/courses', (req, res)=>{
     res.send([1,2,3,4,5,6,7,8,9]);
 });
 
+app.get('/api/courses/:id',(req, res)=>{
+    res.send(req.params.id);
+});
+
+app.get('/api/posts/:year/:month',(req, res)=>{
+    res.send(req.params);
+});
+
 
 // Http Method
 // app.get();
