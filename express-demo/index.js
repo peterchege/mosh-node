@@ -10,7 +10,6 @@ app.get('/api/courses', (req, res)=>{
     res.send([1,2,3,4,5,6,7,8,9]);
 });
 
-app.listen(3000, ()=> console.log('Listening to port 3000...'));
 
 // Http Method
 // app.get();
@@ -18,3 +17,7 @@ app.listen(3000, ()=> console.log('Listening to port 3000...'));
 // app.length();
 // app.delete();
 // app.put();
+
+// ENVIRONMENT VARIABLE
+const port = process.env.app || 3000;
+app.listen(port, () => console.log(`Listening to port ${port}...`));
