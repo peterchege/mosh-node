@@ -1,26 +1,38 @@
 const express = require('express');
 const app = express();
 
+const courses = [
+    { id:1, name: 'physics'},
+    { id:2, name: 'mathematics' },
+    { id:3, name: 'Chemistry'},
+];
+
 
 app.get('/', (req , res) =>{
     res.send('Hello peter chege, js guru');
 });
 
 app.get('/api/courses', (req, res)=>{
-    res.send([1,2,3,4,5,6,7,8,9]);
+    res.send(courses);
 });
 
 app.get('/api/courses/:id',(req, res)=>{
-    res.send(req.params.id);
+   const course = courses.find(c=>c.id === parseInt(req.params.id));
+   if(!course) res.status(404).send('This course with the given ID was not found');
+   res.send(course);
 });
+
+// ROUTE PARAMETERS
 
 // app.get('/api/posts/:year/:month',(req, res)=>{
 //     res.send(req.params);
 // });
 
-app.get('/api/posts/:year/:month', (req, res) => {
-    res.send(req.query);
-});
+// QUERY PARAMETERS
+
+// app.get('/api/posts/:year/:month', (req, res) => {
+//     res.send(req.query);
+// });
 
 
 // Http Method
