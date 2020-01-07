@@ -30,11 +30,10 @@ app.post('/api/courses', (req, res)=>{
         name: Joi.string().min(3).required()
     };
     const result = Joi.validate(req.body, schema);
-    console.log(result);
 
     if (result.error){
         //404 bad request
-        res.status(404).send(result.error);
+        res.status(404).send(result.error.details[0].message);
         return;
     }
     const course = {
