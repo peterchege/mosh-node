@@ -7,8 +7,8 @@ const express = require('express');
 const app = express();
 
 //environment defination
-console.log(`NODE_ENV : ${process.env.NODE_ENV}`);
-console.log(`app: ${app.get('env')}`);
+// console.log(`NODE_ENV : ${process.env.NODE_ENV}`);
+// console.log(`app: ${app.get('env')}`);
 
 //inbuilt middlewares
 app.use(express.json());
@@ -17,7 +17,15 @@ app.use(express.static('public'));
 
 //third party middleware
 app.use(helmet());
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
+
+//condition for environment
+if(app.get('env') === 'development') {
+
+    app.use(morgan('tiny'));
+    console.log('Morgan enabled...')
+
+}
 
 //Creating a custom middleware 
 app.use(logger);
