@@ -6,6 +6,10 @@ const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
 
+//environment defination
+console.log(`NODE_ENV : ${process.env.NODE_ENV}`);
+console.log(`app: ${app.get('env')}`);
+
 //inbuilt middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
