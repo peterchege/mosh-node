@@ -9,7 +9,9 @@ const app = express();
 
 //configurations
 console.log('Application Name' + config.get('name'));
-console.log('Mail server' + config.get('mail.host'));
+console.log('Mail server ' + config.get('mail.host'));
+console.log('Mail password ' + config.get('mail.password'));
+
 
 //environment defination
 // console.log(`NODE_ENV : ${process.env.NODE_ENV}`);
