@@ -1,3 +1,4 @@
+const config = require('config');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const Joi = require('joi');
@@ -5,6 +6,10 @@ const logger = require('./logger');
 const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
+
+//configurations
+console.log('Application Name' + config.get('name'));
+console.log('Mail server' + config.get('mail.host'));
 
 //environment defination
 // console.log(`NODE_ENV : ${process.env.NODE_ENV}`);
