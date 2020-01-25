@@ -5,10 +5,10 @@ const express = require('express');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //Creating a custom middleware 
 app.use(logger);
-
 app.use(authenticator);
 
 const courses = [
