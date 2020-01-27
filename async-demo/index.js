@@ -1,14 +1,21 @@
 console.log('Before');
-const user = getUser(1);
+ getUser(1, function(user) {
+    console.log('User', user);
+ });
 console.log('After');
 
+// Callbacks
+// Promises
+// Async/await
 
 
-function getUser(id) {
+function getUser(id, callback) {
     setTimeout(() => {
         console.log('Reading a user from a database...');
-        return {id:id, gitHunUsername: 'peter'};
+        callback({
+            id: id,
+            gitHunUsername: 'peter'
+        });
     }, 2000);
 
-    return 1;
 }
