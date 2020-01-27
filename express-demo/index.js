@@ -53,7 +53,11 @@ const courses = [
 
 
 app.get('/', (req , res) =>{
-    res.send('Hello peter chege, js guru');
+    // res.send('Hello peter chege, js guru');
+    res.render('index', {
+        title: 'My Express App',
+        message: 'Hello peter chege, js guru'
+    });
 });
 
 app.get('/api/courses', (req, res)=>{
