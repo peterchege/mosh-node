@@ -1,14 +1,32 @@
-app.get('/api/courses', (req, res) => {
+const express = require('express');
+const router = express.Router();
+
+const courses = [{
+        id: 1,
+        name: 'physics'
+    },
+    {
+        id: 2,
+        name: 'mathematics'
+    },
+    {
+        id: 3,
+        name: 'Chemistry'
+    },
+];
+
+
+router.get('/', (req, res) => {
     res.send(courses);
 });
 
-app.get('/api/courses/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const course = courses.find(c => c.id === parseInt(req.params.id));
     if (!course) return res.status(404).send('This course with the given ID was not found');
     res.send(course);
 });
 
-app.post('/api/courses', (req, res) => {
+router.post('/', (req, res) => {
 
     const {
         error
@@ -24,7 +42,7 @@ app.post('/api/courses', (req, res) => {
     res.send(courses);
 });
 
-app.put('/api/courses/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     // Look up for the course
     // If not existing, return 404
     const course = courses.find(c => c.id === parseInt(req.params.id));
@@ -55,7 +73,7 @@ function validateCourse(course) {
 }
 
 // DELETE FUNCTION
-app.delete('/api/courses/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     // Look up for the course
     // If not existing, return 404
     const course = courses.find(c => c.id === parseInt(req.params.id));
@@ -68,3 +86,6 @@ app.delete('/api/courses/:id', (req, res) => {
     // Return the same course
     res.send(course);
 });
+
+
+module.exports = router;

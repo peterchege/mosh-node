@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const Joi = require('joi');
 const logger = require('./logger');
+const courses = require('./courses');
 const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
@@ -28,6 +29,7 @@ console.log('Mail password ' + config.get('mail.password'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use('/api/courses', courses);
 
 //third party middleware  
 app.use(helmet());
@@ -44,12 +46,6 @@ if(app.get('env') === 'development') {
 //Creating a custom middleware 
 app.use(logger);
 app.use(authenticator);
-
-const courses = [
-    { id:1, name: 'physics'},
-    { id:2, name: 'mathematics' },
-    { id:3, name: 'Chemistry'},
-];
 
 
 app.get('/', (req , res) =>{
