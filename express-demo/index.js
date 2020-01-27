@@ -8,6 +8,12 @@ const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
 
+// Templating Engine
+
+app.set('view engine', 'pug');
+app.set('views', './views'); // default storage
+
+
 //configurations
 console.log('Application Name' + config.get('name'));
 console.log('Mail server ' + config.get('mail.host'));
