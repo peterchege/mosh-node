@@ -10,8 +10,8 @@ const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
 
-// Templating Engine
 
+// Templating Engine
 app.set('view engine', 'pug');
 app.set('views', './views'); // default storage
 
