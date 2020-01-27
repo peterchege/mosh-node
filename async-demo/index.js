@@ -1,8 +1,16 @@
 console.log('Before');
- getUser(1, function(user) {
-    console.log('User', user);
+ getUser(1, (user) => {
+
+     console.log('User', user); //worked well
+
+    // Get the repositories
+    getRepositories(user.gitHunUsername, (repos) =>{
+        console.log('Repos', repos);
+    });
  });
+
 console.log('After');
+
 
 // Callbacks
 // Promises
@@ -18,4 +26,11 @@ function getUser(id, callback) {
         });
     }, 2000);
 
+}
+
+function getRepositories(username, callback) {
+    setTimeout(() =>{
+        console.log('Calling gihub API...');
+        callback(['repo1', 'repo2', 'repo3']);
+    }, 2000);
 }
