@@ -4,7 +4,8 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const Joi = require('joi');
 const logger = require('./logger');
-const courses = require('./courses');
+const courses = require('./routes/courses');
+const home = require('./routes/home');
 const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
@@ -30,6 +31,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use('/api/courses', courses);
+app.use('/', home);
+
 
 //third party middleware  
 app.use(helmet());
@@ -47,14 +50,6 @@ if(app.get('env') === 'development') {
 app.use(logger);
 app.use(authenticator);
 
-
-app.get('/', (req , res) =>{
-    // res.send('Hello peter chege, js guru');
-    res.render('index', {
-        title: 'My Express App',
-        message: 'Hello peter chege, js guru'
-    });
-});
 
 
 // ROUTE PARAMETERS
