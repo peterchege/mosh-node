@@ -4,7 +4,7 @@ console.log('Before');
 console.log('After');
 
 function getRepositories(user){
-    getRepositories(user.gitHunUsername, getCommits);
+    getRepositories(user.gitHubUsername, getCommits);
 }
 
 function getCommits(repos) {
@@ -27,14 +27,14 @@ function getUser(id, callback) {
         console.log('Reading a user from a database...');
         callback({
             id: id,
-            gitHunUsername: 'peter'
+            gitHubUsername: 'peter'
         });
     }, 2000);
 
 }
 
 function getRepositories(username, callback) {
-    setTimeout(() =>{
+    setTimeout(() => {
         console.log('Calling gihub API...');
         callback(['repo1', 'repo2', 'repo3']);
     }, 2000);
