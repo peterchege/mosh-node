@@ -5,7 +5,9 @@ console.log('Before');
 
     // Get the repositories
     getRepositories(user.gitHunUsername, (repos) =>{
-        console.log('Repos', repos);
+        getCommits(repo, (commits) =>{
+
+        });
     });
  });
 
