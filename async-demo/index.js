@@ -5,13 +5,15 @@ console.log('Before');
 
     // Get the repositories
     getRepositories(user.gitHunUsername, (repos) =>{
-        getCommits(repo, (commits) =>{
-
-        });
+        getCommits(repo, displayCommits);
     });
  });
 
 console.log('After');
+
+function displayCommits(commits){
+    console.log(commits);
+}
 
 
 // Callbacks
