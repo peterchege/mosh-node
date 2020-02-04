@@ -4,9 +4,7 @@ console.log('Before');
      console.log('User', user); //worked well
 
     // Get the repositories
-    getRepositories(user.gitHunUsername, (repos) =>{
-        getCommits(repo, displayCommits);
-    });
+    getRepositories(user.gitHunUsername, displayingRepos);
  });
 
 console.log('After');
@@ -15,6 +13,9 @@ function displayCommits(commits){
     console.log(commits);
 }
 
+function displayingRepos(repos){
+        getCommits(repo, displayCommits);
+}
 
 // Callbacks
 // Promises
