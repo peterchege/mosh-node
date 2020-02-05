@@ -1,24 +1,26 @@
 console.log('Before');
- getUser(1, getRepositories);
+//  getUser(1, getRepositories);
+
+ //consuming promise
+
+ const p = getUser(1);
+ p.then(user => console.log(user));
 
 console.log('After');
 
-function getRepositories(user){
-    getRepositories(user.gitHubUsername, getCommits);
-}
-
-function getCommits(repos) {
-    getCommits(repo, displayCommits);
-}
-
-function displayCommits(commits){
-    console.log(commits);
-}
+// function getRepositories(user){
+//     getRepositories(user.gitHubUsername, getCommits);
+// }
+// function getCommits(repo) {
+//     getCommits(repo, displayCommits);
+// }
+// function displayCommits(commits){
+//     console.log(commits);
+// }
 
 // Callbacks
 // Promises
 // Async/await
-
 
 function getUser(id) {
 
