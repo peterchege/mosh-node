@@ -20,20 +20,36 @@ function displayCommits(commits){
 // Async/await
 
 
-function getUser(id, callback) {
-    setTimeout(() => {
-        console.log('Reading a user from a database...');
-        callback({
-            id: id,
-            gitHubUsername: 'peter'
-        });
-    }, 2000);
+function getUser(id) {
 
+    return new Promise((resolve, reject)=>{
+        setTimeout(() => {
+            console.log('Reading a user from a database...');
+            resolve({
+                id: id,
+                gitHubUsername: 'peter'
+            });
+        }, 2000);
+    });
 }
 
-function getRepositories(username, callback) {
-    setTimeout(() => {
-        console.log('Calling gihub API...');
-        callback(['repo1', 'repo2', 'repo3']);
-    }, 2000);
+function getRepositories(username) {
+  
+    return new Promise((resolve, reject)=>{
+         setTimeout(() => {
+             console.log('Calling gihub API...');
+             resolve(['repo1', 'repo2', 'repo3']);
+         }, 2000);
+    });
+   
+}
+
+function getCommits(repo){
+    
+    return new Promise((resolved, rejected) => {
+        setTimeout(() => {
+            console.log('Calling github Api...')
+            resolved(['commit']);
+        }, 2000);
+    });
 }
