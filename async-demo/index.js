@@ -15,8 +15,6 @@ function displayCommits(commits){
     console.log(commits);
 }
 
-
-
 // Callbacks
 // Promises
 // Async/await
