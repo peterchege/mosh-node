@@ -26,10 +26,16 @@ console.log('Before');
 // Async and await approach
 
 async function displayCommits() {
-    const user = await getUser(1);
-    const repos = await getRepositories(user.gitHubUsername);
-    const commits = await getCommits(repos[0]);
-    console.log(commits);
+    try {
+         const user = await getUser(1);
+         const repos = await getRepositories(user.gitHubUsername);
+         const commits = await getCommits(repos[0]);
+         console.log(commits);
+    }
+    catch (err) {
+        console.log(err);
+    }
+   
 }
 
 displayCommits();
@@ -51,10 +57,11 @@ function getUser(id) {
 
 function getRepositories(username) {
   
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
          setTimeout(() => {
              console.log('Calling gihub API...');
-             resolve(['repo1', 'repo2', 'repo3']);
+            //  resolve(['repo1', 'repo2', 'repo3']);
+            reject ('Could not get the repos');
          }, 2000);
     });
    
