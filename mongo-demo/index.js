@@ -14,11 +14,20 @@ const courseSchema = new mongoose.Schema({
     isPublished: Boolean
 });
 
-// creating a model
-const Course = mongoose.model('Course', courseSchema);
-const course = new Course({
-    name: "Nodejs Course",
-    author: 'Peter',
-    tags: ['node', 'backend'],
-    isPublished: true
-});
+//create async function to get the promise
+async function createCourse() {
+    // creating a model
+    const Course = mongoose.model('Course', courseSchema);
+    const course = new Course({
+        name: "Nodejs Course",
+        author: 'Peter',
+        tags: ['node', 'backend'],
+        isPublished: true
+    });
+
+    const result = await course.save();
+    console.log(result);
+}
+
+createCourse();
+
