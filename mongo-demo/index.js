@@ -43,7 +43,8 @@ async function getCourses() {
 // nin (not in)
     const courses = await Course
     // .find({ author: 'Peter', isPublished: true})
-    .find({ price: { $gte: 10, $lte: 20 } })
+    // .find({ price: { $gte: 10, $lte: 20 } })
+    .find({ price: { $in: [10, 50, 20]} })
     .limit(10)
     .sort({ name: 1 })
     .select({ name : 1, tags: 1 });
