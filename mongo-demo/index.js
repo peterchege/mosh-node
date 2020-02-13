@@ -14,10 +14,12 @@ const courseSchema = new mongoose.Schema({
     isPublished: Boolean
 });
 
+const Course = mongoose.model('Course', courseSchema);
+
+
 //create async function to get the promise
 async function createCourse() {
     // creating a model
-    const Course = mongoose.model('Course', courseSchema);
     const course = new Course({
         name: "Angular Course",
         author: 'Peter',
