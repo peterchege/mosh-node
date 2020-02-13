@@ -19,7 +19,8 @@ const Course = mongoose.model('Course', courseSchema);
 
 //update a document and return it
 async function deletCourse(id) {
-    const result = await Course.deleteOne({_id: id});
-    console.log(result);
+    // const result = await Course.deleteOne({_id: id});
+    const course = await Course.findByIdAndRemove(id);
+    console.log(course);
 }
 deletCourse('5e45c19b826f81269c3c4b57');
