@@ -21,21 +21,18 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
     // creating a model
     const course = new Course({
-        name: "Angular Course",
+        name: "Java Course",
         author: 'Peter',
-        tags: ['angular', 'frontend'],
+        tags: ['java', 'Backend'],
         isPublished: true
     });
 
-    try{
-         const result = await course.save();
-         console.log(result);
-    }
-     catch (err) {
-         console.log(err);
-     }
+    const result = await course.save();
+    console.log(result);
    
 }
+
+createCourse();
 
 // Querying from Mongodb
 async function getCourses() {

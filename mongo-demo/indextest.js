@@ -31,10 +31,25 @@ async function createCourse() {
     
 }
 
-// Querying from Mongodb
 async function getCourses() {
      const result = await createCourse();
      console.log(result);
 }
 
-getCourses();
+// Updating data in mongodb using :
+// Query first
+// findbyid()
+// Modify its properties
+// Save
+
+async function updateCourse(id){
+   const course = await Course.findById(id);
+   if(!course) return;
+
+   course.isPublished = true;
+   course.author = 'Another author';
+
+   const result = await course.save();
+   console.log(result);
+}
+updateCourse('5e45c19b826f81269c3c4b57');
