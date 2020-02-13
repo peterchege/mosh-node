@@ -6,7 +6,7 @@ async function NotifyCustomer() {
         if (customer.isGold) {
         const movies = await getTopMovies();
          console.log('Top movies: ', movies);
-        const email = await sendEmail(customer.email, movies);
+        const userEmail = await sendEmail(customer.email, movies);
          console.log('Email sent...')
         }
     }
