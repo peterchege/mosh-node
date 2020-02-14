@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/playground')
 
 // schema definition
 const courseSchema = new mongoose.Schema({
-    name: String,
+    name: {type: String, required: true},
     author: String,
     tags: [String],
     date: {type: Date, default: Date.now},
@@ -21,7 +21,7 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
     // creating a model
     const course = new Course({
-        name: "Java Course",
+        name: "",
         author: 'Chege',
         tags: ['Java', 'Backend'],
         isPublished: true
@@ -32,10 +32,17 @@ async function createCourse() {
 }
 
 async function getCourses() {
-     const result = await createCourse();
-     console.log(result);
+
+    try{
+        const result = await createCourse();
+        console.log(result);
+    }
+    catch(ex){
+        console.log(ex.message);
+    }
+     
 }
-// getCourses();
+getCourses();
 
 // Updating data in mongodb using :
 // Query first
@@ -54,4 +61,4 @@ async function updateCourse(id){
    const result = await course.save();
    console.log(result);
 }
-updateCourse('5e469d8728ef293ed8842a4c');
+// updateCourse('5e469d8728ef293ed8842a4c');
