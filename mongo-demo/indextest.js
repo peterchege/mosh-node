@@ -3,7 +3,7 @@ const mongoose = require ('mongoose');
 // connection to Mongodb
 mongoose.connect('mongodb://localhost/playground')
 .then( () => console.log('Connected to MongoDB....'))
-.catch(err => console.err("Could not connect to MongoDB...", err))
+.catch(err => console.log("Could not connect to MongoDB...", err))
 
 // schema definition
 const courseSchema = new mongoose.Schema({
@@ -21,9 +21,9 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
     // creating a model
     const course = new Course({
-        name: "Svelte Course",
+        name: "Java Course",
         author: 'Chege',
-        tags: ['Svelte', 'frontend'],
+        tags: ['Java', 'Backend'],
         isPublished: true
     });
 
@@ -35,6 +35,7 @@ async function getCourses() {
      const result = await createCourse();
      console.log(result);
 }
+// getCourses();
 
 // Updating data in mongodb using :
 // Query first
@@ -47,9 +48,10 @@ async function updateCourse(id){
    if(!course) return;
 
    course.isPublished = true;
-   course.author = 'Another author';
+   course.name = 'PHP Course';
+   course.tags= ['PHP', 'Backend'];
 
    const result = await course.save();
    console.log(result);
 }
-updateCourse('5e45c19b826f81269c3c4b57');
+updateCourse('5e469d8728ef293ed8842a4c');
