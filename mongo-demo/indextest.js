@@ -21,28 +21,30 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
     // creating a model
     const course = new Course({
-        name: "",
-        author: 'Chege',
-        tags: ['Java', 'Backend'],
+        // name: "Scala Course",
+        author: 'Peter Chege',
+        tags: ['scala', 'Backend'],
         isPublished: true
     });
 
-    return await course.save();
+    const result = await course.save();
+    console.log(result);
     
 }
+createCourse()
+// async function getCourses() {
 
-async function getCourses() {
-
-    try{
-        const result = await createCourse();
-        console.log(result);
-    }
-    catch(ex){
-        console.log(ex.message);
-    }
+//     try{
+//         await createCourse.validate();
+//         // const result = await createCourse();
+//         // console.log(result);
+//     }
+//     catch(ex){
+//         console.log(ex.message);
+//     }
      
-}
-getCourses();
+// }
+// getCourses();
 
 // Updating data in mongodb using :
 // Query first
