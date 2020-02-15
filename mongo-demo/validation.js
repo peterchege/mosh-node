@@ -7,7 +7,18 @@ mongoose.connect('mongodb://localhost/playground')
 
 // schema definition
 const courseSchema = new mongoose.Schema({
-    name: {type: String, required: true},
+    name: {
+        type: String, 
+        required: true,
+        minlength: 5,
+        maxlength: 225
+    },
+    category:{
+        type: String,
+        require:true,
+        enum: ['web', 'mobile','network'],
+        
+    },
     author: String,
     tags: [String],
     date: {type: Date, default: Date.now},
@@ -28,7 +39,9 @@ async function createCourse() {
         // name: "Scala Course",
         author: 'Peter Chege',
         tags: ['scala', 'Backend'],
-        isPublished: true
+        category: '-',
+        isPublished: true,
+        price: 340
     });
 
     try{
