@@ -1,11 +1,31 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
-const genres = [
-  { id: 1, name: 'Action' },  
-  { id: 2, name: 'Horror' },  
-  { id: 3, name: 'Romance' },  
-];
+// const genres = [
+//   { id: 1, name: 'Action' },  
+//   { id: 2, name: 'Horror' },  
+//   { id: 3, name: 'Romance' },  
+// ];
+
+mongoose.connect('mongodb://localhost/genres')
+.then(()=> console.log('Connecting to Mongodb'))
+.catch(err => console.log(err))
+
+const genreSchema = new mongoose.schema(
+  {
+    name: String,
+    required: true
+  }
+);
+
+const Genres = new mongoose.model('Genres', genreSchema);
+
+async function createGenres(){
+  const genre = new Genres({
+    name: 'action'
+  });
+}
 
 router.get('/', (req, res) => {
   res.send(genres);
