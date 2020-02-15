@@ -20,12 +20,25 @@ const courseSchema = new mongoose.Schema({
         
     },
     author: String,
-    tags: [String],
-    date: {type: Date, default: Date.now},
+    tags: {
+        type: Array,
+        validate:{
+            validator: function (v){
+                return v && v.lenght > 0;
+            },
+            message: 'A course should have at least one tag.'
+        }
+    },
+    date: {
+        type: Date, 
+        default: Date.now
+    },
     isPublished: Boolean,
     price: {
         type: Number,
-        required: function () {return this.isPublished;}
+        required: function () {return this.isPublished;},
+        min: 10,
+        max: 400
     }
 });
 
@@ -36,10 +49,10 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
     // creating a model
     const course = new Course({
-        // name: "Scala Course",
+        name: "Kotlin Course",
         author: 'Peter Chege',
-        tags: ['scala', 'Backend'],
-        category: '-',
+        tags: ['Kotlin', 'Backend'],
+        category: 'web',
         isPublished: true,
         price: 340
     });
