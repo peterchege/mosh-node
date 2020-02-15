@@ -44,8 +44,8 @@ const courseSchema = new mongoose.Schema({
         required: function () {return this.isPublished;},
         min: 10,
         max: 400,
-        get: v => Math.round(v),
-        set: v => Math.round(v)
+        get: v => Math.round(v), // called when reading the value of a property
+        set: v => Math.round(v)  // called when setting the value of a property
     }
 });
 
@@ -97,15 +97,15 @@ createCourse()
 // Modify its properties
 // Save
 
-// async function updateCourse(id){
-//    const course = await Course.findById(id);
-//    if(!course) return;
+async function updateCourse(id){
+   const course = await Course.findById(id);
+   if(!course) return;
 
-//    course.isPublished = true;
-//    course.name = 'PHP Course';
-//    course.tags= ['PHP', 'Backend'];
+   course.isPublished = true;
+   course.name = 'PHP Course';
+   course.tags= ['PHP', 'Backend'];
 
-//    const result = await course.save();
-//    console.log(result);
-// }
+   const result = await course.save();
+   console.log(result);
+}
 // updateCourse('5e469d8728ef293ed8842a4c');
