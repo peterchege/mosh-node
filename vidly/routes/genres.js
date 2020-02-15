@@ -8,16 +8,23 @@ const mongoose = require('mongoose');
 //   { id: 3, name: 'Romance' },  
 // ];
 
-const genreSchema = new mongoose.schema({
+// const genreSchema = new mongoose.schema({
+//   name: {
+//     type: String,
+//     required: true,
+//     minlength: 5,
+//     maxlength: 50
+//   }
+// });
+
+const Genre = new mongoose.model('Genre', new mongoose.schema({
   name: {
     type: String,
     required: true,
     minlength: 5,
     maxlength: 50
   }
-});
-
-const Genres = new mongoose.model('Genres', genreSchema);
+}));
 
 async function createGenres(){
   const genre = new Genres({
