@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-// const genres = [
-//   { id: 1, name: 'Action' },  
-//   { id: 2, name: 'Horror' },  
-//   { id: 3, name: 'Romance' },  
-// ];
 
 // const genreSchema = new mongoose.schema({
 //   name: {
@@ -26,13 +21,14 @@ const Genre = new mongoose.model('Genre', new mongoose.schema({
   }
 }));
 
-async function createGenres(){
-  const genre = new Genres({
-    name: 'action'
-  });
-}
+// async function createGenres(){
+//   const genre = new Genres({
+//     name: 'action'
+//   });
+// }
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const genres = await Genre.find().sort('name');
   res.send(genres);
 });
 
