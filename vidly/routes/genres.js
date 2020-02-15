@@ -8,16 +8,14 @@ const mongoose = require('mongoose');
 //   { id: 3, name: 'Romance' },  
 // ];
 
-mongoose.connect('mongodb://localhost/genres')
-.then(()=> console.log('Connecting to Mongodb'))
-.catch(err => console.log(err))
-
-const genreSchema = new mongoose.schema(
-  {
-    name: String,
-    required: true
+const genreSchema = new mongoose.schema({
+  name: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 50
   }
-);
+});
 
 const Genres = new mongoose.model('Genres', genreSchema);
 
