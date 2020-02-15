@@ -17,7 +17,8 @@ const courseSchema = new mongoose.Schema({
         type: String,
         require:true,
         enum: ['web', 'mobile','network'],
-        
+        lowercase: true,
+        trim: true        
     },
     author: String,
     tags: {
@@ -26,9 +27,9 @@ const courseSchema = new mongoose.Schema({
             isAsync: true,
             validator: function (v, callback){
                 setTimeout(() => {
-                    const result = v && v.lenght > 0;
-                    callback(result)
-                },4000);
+                    const result = v && v.length > 0;
+                    callback(result);
+                },1);
             },
             message: 'A course should have at least one tag.'
         }
@@ -42,7 +43,9 @@ const courseSchema = new mongoose.Schema({
         type: Number,
         required: function () {return this.isPublished;},
         min: 10,
-        max: 400
+        max: 400,
+        get: v => Math.round(v),
+        set: v => Math.round(v)
     }
 });
 
@@ -53,12 +56,12 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
     // creating a model
     const course = new Course({
-        name: "Kotlin Course",
+        name: "Perl Course",
         author: 'Peter Chege',
-        tags: ['Kotlin', 'Backend'],
-        category: 'web',
+        category: 'Web',
+        tags: ['backend'], 
         isPublished: true,
-        price: 340
+        price: 34.89
     });
 
     try{
@@ -66,7 +69,9 @@ async function createCourse() {
         console.log(result);
     }
     catch(ex){
-        console.log(ex.message);
+        // console.log(ex.message);
+        for(field in ex.errors)
+        console.log(ex.errors[field].message)
     }
     
 }
@@ -92,15 +97,15 @@ createCourse()
 // Modify its properties
 // Save
 
-async function updateCourse(id){
-   const course = await Course.findById(id);
-   if(!course) return;
+// async function updateCourse(id){
+//    const course = await Course.findById(id);
+//    if(!course) return;
 
-   course.isPublished = true;
-   course.name = 'PHP Course';
-   course.tags= ['PHP', 'Backend'];
+//    course.isPublished = true;
+//    course.name = 'PHP Course';
+//    course.tags= ['PHP', 'Backend'];
 
-   const result = await course.save();
-   console.log(result);
-}
+//    const result = await course.save();
+//    console.log(result);
+// }
 // updateCourse('5e469d8728ef293ed8842a4c');
