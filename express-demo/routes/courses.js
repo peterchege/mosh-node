@@ -51,9 +51,7 @@ router.put('/:id', (req, res) => {
     // Validate
     // if invalid, return 404 - bad request    
 
-    const {
-        error
-    } = validateCourse(req.body);
+    const { error } = validateCourse(req.body);
     if (error) return res.status(400).send(result.error.details[0].message);
 
     //update course
