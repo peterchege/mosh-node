@@ -4,7 +4,7 @@ const express = require('express');
 const router =  express.Router();
 
 
-const Customer = new mongoose.model(mongoose.Schema({
+const Customer = mongoose.model('Cusomer', new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -22,3 +22,12 @@ const Customer = new mongoose.model(mongoose.Schema({
     }
 
 }));
+
+router.get('/', async (res, req)=>{
+    const customer = await Customer.find().sort('name');
+    res.send(customer)
+});
+
+
+
+module.exports = router;
