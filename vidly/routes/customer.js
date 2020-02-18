@@ -39,4 +39,13 @@ router.post('/', async (res, req) =>{
     customer = await customer.save();
 });
 
+function validatecustomer(){
+    const schema ={
+        name: Joi.String().min(3).required(),
+        phone: Joi.Number().min(12).required,
+        isGold: Joi.Boolean().required
+
+    };
+};
+
 module.exports = router;
