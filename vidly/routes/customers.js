@@ -30,6 +30,7 @@ router.get('/', async (res, req)=>{
 
 router.post('/', async (res, req) =>{
     const { error } = validatecustomer(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
 
     let customer = new Customer({
         name: req.body.name,
@@ -37,15 +38,17 @@ router.post('/', async (res, req) =>{
         isGold: req.body.isGold
     });
     customer = await customer.save();
+    res.send(customer);
 });
 
-function validatecustomer(){
+function validatecustomer(customer){
     const schema ={
         name: Joi.String().min(3).required(),
         phone: Joi.Number().min(12).required,
         isGold: Joi.Boolean().required
 
     };
+    return Joi.validate(customer, schema);
 };
 
 module.exports = router;
