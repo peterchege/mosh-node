@@ -11,42 +11,42 @@ const Customer = mongoose.model('Cusomer', new mongoose.Schema({
         minlenght: 5,
         maxlength: 50
     },
-    phone: {
-        type: Number,
-        required: true,
-        minlenght: 12
-    },
-    isGold:{
+    isGold: {
         type: Boolean,
-        required: true
+        default: false,
+    },
+    phone: {
+        type: String,
+        required: true,
+        minlenght: 11
     }
-
+    
 }));
 
-router.get('/', async (res, req)=>{
-    const customer = await Customer.find().sort('name');
-    res.send(customer);
+router.get('/', async (req, res)=>{
+    const customers = await Customer.find().sort('name');
+    res.send(customers);
 });
 
-router.post('/', async (res, req) =>{
+router.post('/', async (req, res) =>{
     const { error } = validatecustomer(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     let customer = new Customer({
         name: req.body.name,
-        phone: req.body.phone,
-        isGold: req.body.isGold
+        isGold: req.body.isGold,
+        phone: req.body.phone
+       
     });
     customer = await customer.save();
     res.send(customer);
 });
 
 function validatecustomer(customer){
-    const schema ={
-        name: Joi.String().min(3).required(),
-        phone: Joi.Number().min(12).required,
-        isGold: Joi.Boolean().required
-
+    const schema = {
+        name: Joi.string().min(5).max(50).required(),
+        isGold: Joi.boolean(),
+        phone: Joi.string().min(12).max(50).required()  
     };
     return Joi.validate(customer, schema);
 };
