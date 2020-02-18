@@ -25,9 +25,18 @@ const Customer = mongoose.model('Cusomer', new mongoose.Schema({
 
 router.get('/', async (res, req)=>{
     const customer = await Customer.find().sort('name');
-    res.send(customer)
+    res.send(customer);
 });
 
+router.post('/', async (res, req) =>{
+    const { error } = validatecustomer(req.body);
 
+    let customer = new Customer({
+        name: req.body.name,
+        phone: req.body.phone,
+        isGold: req.body.isGold
+    });
+    customer = await customer.save();
+});
 
 module.exports = router;
