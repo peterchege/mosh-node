@@ -20,7 +20,7 @@ const Customer = mongoose.model('Cusomer', new mongoose.Schema({
 
 }));
 
-function validatecustomer(customer) {
+function validateCustomer(customer) {
     const schema = {
         name: Joi.string().min(5).max(50).required(),
         isGold: Joi.boolean(),
