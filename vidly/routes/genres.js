@@ -5,25 +5,6 @@ const router = express.Router();
 
 
 
-
-// const genreSchema = new mongoose.schema({
-//   name: {
-//     type: String,
-//     required: true,
-//     minlength: 5,
-//     maxlength: 50
-//   }
-// });
-
-const Genre = mongoose.model('Genre', new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    minlength: 3,
-    maxlength: 50
-  }
-}));
-
 // async function createGenres(){
 //   const genre = new Genres({
 //     name: 'action'
@@ -37,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   
-  const { error } = validateGenre(req.body); 
+  const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
   
   let genre = new Genre({ name: req.body.name });
@@ -48,7 +29,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const { error } = validateGenre(req.body); 
+  const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
   const genre = await Genre.findByIdAndUpdate(req.params.id, {name: req.body.name}, {new: true} );
