@@ -43,10 +43,19 @@ async function UpdateAuthor(courseId) {
   });
 }
 
+async function addAuthor (courseId, author){
+  const course = await Course.findById(courseId);
+  course.authors.push(author);
+  course.save();
+}
+
 // UpdateAuthor('5e539ee8467158044037a24e');
 
-createCourse('Node Course', [
-  new Author({ name: 'Mosh' }),
-  new Author({ name: 'Peter' }),
-  new Author({ name: 'chege' })
-]);
+// createCourse('Node Course', [
+//   new Author({ name: 'Mosh' }),
+//   new Author({ name: 'Peter' }),
+//   new Author({ name: 'chege' })
+// ]);
+
+
+addAuthor('5e61050d2c733146cc1618e1', new Author({name: 'Mwangi'}));
