@@ -5,8 +5,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/vidly')
-    .then(() => console.log('Connecting to Mongodb...'))
+mongoose.connect('mongodb://localhost/vidly')    .then(() => console.log('Connecting to Mongodb...'))
     .catch(err => console.error('Could not connect to mongodb...'));
 
 app.use(express.json());

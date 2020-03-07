@@ -20,8 +20,7 @@ router.post('/', async(req,res)=>{
         numberInstock: req.body.numberInstock,
         dailyRentalRate: req.body.dailyRentalRate
     });
-
-    const movie = await movie.save();
+    movie = await movie.save();
 
     res.send(movie);
 });
