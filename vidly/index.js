@@ -1,14 +1,14 @@
-const genres = require('./routes/genres');
-const customers = require('./routes/customers');
-const express = require('express');
+import genres from './routes/genres';
+import customers from './routes/customers';
+import express, { json } from 'express';
 const app = express();
-const mongoose = require('mongoose');
+import { connect } from 'mongoose';
 
-mongoose.connect('mongodb://localhost/vidly')
+connect('mongodb://localhost/vidly')
     .then(() => console.log('Connecting to Mongodb...'))
     .catch(err => console.error('Could not connect to mongodb...'));
 
-app.use(express.json());
+app.use(json());
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
 
