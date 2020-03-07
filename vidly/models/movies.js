@@ -1,6 +1,5 @@
 const Joi = require('joi');
 const mongoose = require ('mongoose');
-const genres = require('./models/genres');
 
 
 const genreSchema = new mongoose.Schema({
