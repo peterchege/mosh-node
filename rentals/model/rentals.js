@@ -19,5 +19,13 @@ const rentalSchema = new mongoose.Schema({
 
 const Rentals = mongoose.model('rentalSchema', rentalSchema);
 
+function ValidateRentals(rental){
+    const schema = {
+        name: Joi.string().min(5).max(255).required()
+    };
+    return Joi.validate(schema,rental)
+}
+
 
 exports.Rentals = Rentals;
+exports.validate = ValidateRentals;
