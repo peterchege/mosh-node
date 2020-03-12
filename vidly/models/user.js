@@ -15,7 +15,7 @@ const User = new mongoose.model('user', mongoose.Schema({
         required: true
     },
     password:{
-        type: password,
+        type: String,
         required: true
     }
 }));
@@ -23,7 +23,7 @@ const User = new mongoose.model('user', mongoose.Schema({
 
 function validateUser(user){
     const Schema = {
-        name: Joi.String().min(2).max(225).required(),
+        name: Joi.string().min(2).max(225).required(),
         email: Joi.string().required(),
         password: Joi.string().required()
     };
