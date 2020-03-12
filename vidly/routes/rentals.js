@@ -37,10 +37,20 @@ router.post('/', async (req, res) => {
               dailyRentalRate: movie.dailyRentalRate
           }
       });
-      rental = await customer.save();
 
-      movie.numberInStock--;
-      movie.save();
+      try{
+        new Fawn.Task()
+            .save('rentals', rental)
+            .update('movies', {_id: movie._id },{
+                $inc: { numberInstock: -1}
+            })
+            .run();
 
       res.send(rental);
+      }
+      catch(ex){
+          res.status(500).send('Something Failed')
+      }
+
+      
 });
