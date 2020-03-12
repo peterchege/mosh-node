@@ -1,5 +1,5 @@
 const {Rentals, validate} = require('../models/rental'); 
-const {Movie, validate} = require('../models/movie'); 
+const {Movie} = require('../models/movie'); 
 const {Genre} = require('../models/genre');
 const mongoose = require('mongoose');
 const Fawn = require("fawn");
@@ -54,3 +54,5 @@ router.post('/', async (req, res) => {
 
       
 });
+
+module.exports = router;
