@@ -26,20 +26,20 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
     },
     movie: {
         type: new mongoose.Schema({
-           title: {
+            title: {
                    type: String,
                    required: true,
                    trim: true,
                    minlength: 5,
                    maxlength: 255
                },
-               numberInStock: {
+            numberInStock: {
                    type: Number,
                    required: true,
                    min: 0,
                    max: 255
                },
-               dailyRentalRate: {
+            dailyRentalRate: {
                    type: Number,
                    required: true,
                    min: 0,
